@@ -1,4 +1,4 @@
-package pl.coderslab.config;
+package pl.coderslab;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -41,7 +41,7 @@ public class AppConfig implements WebMvcConfigurer {
     @Bean
     public LocalEntityManagerFactoryBean entityManagerFactory() {
         LocalEntityManagerFactoryBean emfb = new LocalEntityManagerFactoryBean();
-        emfb.setPersistenceUnitName("workshopHibernate");
+        emfb.setPersistenceUnitName("technoShop");
         return emfb;
     }
 
