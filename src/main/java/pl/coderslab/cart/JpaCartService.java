@@ -8,4 +8,24 @@ import org.springframework.stereotype.Service;
 @Primary
 @RequiredArgsConstructor
 public class JpaCartService implements CartService{
+    private final CartRepository cartRepository;
+    @Override
+    public void addCart(Cart cart) {
+        cartRepository.save(cart);
+    }
+
+    @Override
+    public void deleteCart(Long id) {
+        cartRepository.delete(cartRepository.getOne(id));
+    }
+
+    @Override
+    public Cart getCart(Long id) {
+        return cartRepository.getOne(id);
+    }
+
+    @Override
+    public void editCart(Cart cart) {
+        cartRepository.save(cart);
+    }
 }
