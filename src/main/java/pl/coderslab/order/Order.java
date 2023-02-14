@@ -4,10 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pl.coderslab.product.Product;
 import pl.coderslab.user.User;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static javax.persistence.GenerationType.*;
 
@@ -23,7 +26,9 @@ public class Order {
     private Long id;
     private LocalDateTime createdDate;
     @ManyToOne
-    @JoinColumn(name = "user")
+    @JoinColumn(name = "user_id")
     private User user;
+    @ManyToMany(mappedBy = "orders")
+    private List<Product> products = new ArrayList<>();
 
 }

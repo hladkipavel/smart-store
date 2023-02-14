@@ -4,8 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pl.coderslab.category.Category;
+import pl.coderslab.order.Order;
 
 import javax.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static javax.persistence.GenerationType.*;
 
@@ -22,8 +27,12 @@ public class Product {
     private String name;
     private String description;
     private double price;
-
-    public Product(String name, String description, double price) {
-        this(null, name, description, price);
-    }
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+    @ManyToMany
+    @JoinTable(name = "products_orders",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "order_id"))
+    private List<Order> orders = new ArrayList<>();
 }
