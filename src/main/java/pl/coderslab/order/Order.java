@@ -1,4 +1,4 @@
-package pl.coderslab.cart;
+package pl.coderslab.order;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,19 +11,18 @@ import java.time.LocalDateTime;
 import static javax.persistence.GenerationType.*;
 
 @Entity
-@Table(name = "carts")
+@Table(name = "orders")
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-public class Cart {
+@AllArgsConstructor
+public class Order {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
-    @Column(name = "creation_date")
-    private LocalDateTime creationDate;
+    private LocalDateTime createdDate;
 
-    public Cart(LocalDateTime creationDate) {
-        this(null, creationDate);
+    public Order(LocalDateTime createdDate) {
+        this(null, createdDate);
     }
 }
