@@ -16,7 +16,7 @@ public class JpaCartService implements CartService{
 
     @Override
     public void deleteCart(Long id) {
-        cartRepository.delete(cartRepository.getOne(id));
+        cartRepository.deleteById(id);
     }
 
     @Override

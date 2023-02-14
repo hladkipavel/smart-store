@@ -27,7 +27,7 @@ public class JpaProductService implements ProductService{
 
     @Override
     public void deleteProduct(Long id) {
-        productRepository.delete(productRepository.getOne(id));
+        productRepository.deleteById(id);
     }
 
     @Override

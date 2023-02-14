@@ -17,7 +17,7 @@ public class JpaOrderService implements OrderService{
 
     @Override
     public void deleteOrder(Long id) {
-        orderRepository.delete(orderRepository.getOne(id));
+        orderRepository.deleteById(id);
     }
 
     @Override
