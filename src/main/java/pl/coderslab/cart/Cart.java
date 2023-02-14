@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pl.coderslab.user.User;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -22,8 +23,7 @@ public class Cart {
     private Long id;
     @Column(name = "creation_date")
     private LocalDateTime creationDate;
+    @OneToOne(mappedBy = "cart")
+    private User user;
 
-    public Cart(LocalDateTime creationDate) {
-        this(null, creationDate);
-    }
 }

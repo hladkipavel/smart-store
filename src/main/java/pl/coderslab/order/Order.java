@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pl.coderslab.user.User;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -21,8 +22,8 @@ public class Order {
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
     private LocalDateTime createdDate;
+    @ManyToOne
+    @JoinColumn(name = "user")
+    private User user;
 
-    public Order(LocalDateTime createdDate) {
-        this(null, createdDate);
-    }
 }

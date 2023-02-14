@@ -1,11 +1,13 @@
 package pl.coderslab.user;
 
 import lombok.*;
+import pl.coderslab.cart.Cart;
+import pl.coderslab.order.Order;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -24,8 +26,8 @@ public class User {
     private String lastName;
     private String email;
     private String password;
-
-    public User(String firstName, String lastName, String email, String password) {
-        this(null, firstName, lastName, email, password);
-    }
+    @OneToOne(cascade = CascadeType.REMOVE)
+    private Cart cart;
+    @OneToMany(mappedBy = "user")
+    List<Order> orders = new ArrayList<>();
 }
