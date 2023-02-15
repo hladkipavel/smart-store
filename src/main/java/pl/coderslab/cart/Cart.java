@@ -4,10 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pl.coderslab.cart_item.CartItem;
 import pl.coderslab.user.User;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static javax.persistence.GenerationType.*;
 
@@ -21,9 +23,6 @@ public class Cart {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
-    @Column(name = "creation_date")
-    private LocalDateTime creationDate;
-    @OneToOne(mappedBy = "cart")
-    private User user;
-
+    @OneToMany(mappedBy = "cart")
+    private List<CartItem> cartItems = new ArrayList<>();
 }

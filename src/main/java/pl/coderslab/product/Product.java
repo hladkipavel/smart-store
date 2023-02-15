@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pl.coderslab.category.Category;
 import pl.coderslab.order.Order;
+import pl.coderslab.product_order.ProductOrder;
 
 import javax.persistence.*;
 
@@ -30,9 +31,11 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
-    @ManyToMany
-    @JoinTable(name = "products_orders",
-            joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "order_id"))
-    private List<Order> orders = new ArrayList<>();
+//    @ManyToMany
+//    @JoinTable(name = "products_orders",
+//            joinColumns = @JoinColumn(name = "product_id"),
+//            inverseJoinColumns = @JoinColumn(name = "order_id"))
+//    private List<Order> orders = new ArrayList<>();
+    @OneToMany(mappedBy = "product")
+    private List<ProductOrder> productOrders;
 }

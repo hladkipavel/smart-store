@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import pl.coderslab.product.Product;
+import pl.coderslab.product_order.ProductOrder;
 import pl.coderslab.user.User;
 
 import javax.persistence.*;
@@ -28,7 +29,7 @@ public class Order {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-    @ManyToMany(mappedBy = "orders")
-    private List<Product> products = new ArrayList<>();
+    @OneToMany(mappedBy = "order")
+    private List<ProductOrder> productOrders;
 
 }

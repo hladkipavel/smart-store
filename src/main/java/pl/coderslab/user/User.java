@@ -26,7 +26,7 @@ public class User {
     private String lastName;
     private String email;
     private String password;
-    @OneToOne(cascade = CascadeType.REMOVE)
+    @OneToOne
     private Cart cart;
     @OneToMany(mappedBy = "user")
     List<Order> orders = new ArrayList<>();
