@@ -23,8 +23,8 @@ public class ProductOrder {
     private Long id;
     private double price;
     private int count;
-    @ManyToOne
-    private Product product;
-    @ManyToOne
-    private Order order;
+//    @ManyToOne
+//    private Product product;
+//    @ManyToOne
+//    private Order order;
 }

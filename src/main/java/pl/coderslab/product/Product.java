@@ -1,9 +1,6 @@
 package pl.coderslab.product;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import pl.coderslab.category.Category;
 import pl.coderslab.order.Order;
 import pl.coderslab.product_order.ProductOrder;
@@ -21,6 +18,7 @@ import static javax.persistence.GenerationType.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString(exclude = "id")
 public class Product {
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -31,11 +29,6 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
-//    @ManyToMany
-//    @JoinTable(name = "products_orders",
-//            joinColumns = @JoinColumn(name = "product_id"),
-//            inverseJoinColumns = @JoinColumn(name = "order_id"))
-//    private List<Order> orders = new ArrayList<>();
-    @OneToMany(mappedBy = "product")
-    private List<ProductOrder> productOrders;
+//    @OneToMany(mappedBy = "product")
+//    private List<ProductOrder> productOrders;
 }
