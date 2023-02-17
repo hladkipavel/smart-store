@@ -15,7 +15,6 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Table(name = "users")
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
@@ -30,4 +29,12 @@ public class User {
     private Cart cart;
     @OneToMany(mappedBy = "user")
     List<Order> orders = new ArrayList<>();
+
+    public User(String firstName, String lastName, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.cart = new Cart();
+    }
 }

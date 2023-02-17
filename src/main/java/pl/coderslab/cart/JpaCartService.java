@@ -10,8 +10,9 @@ import org.springframework.stereotype.Service;
 public class JpaCartService implements CartService{
     private final CartRepository cartRepository;
     @Override
-    public void addCart(Cart cart) {
+    public Cart addCart(Cart cart) {
         cartRepository.save(cart);
+        return cartRepository.getOne(cart.getId());
     }
 
     @Override

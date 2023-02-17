@@ -51,7 +51,7 @@
                     </p>
                 </div>
                 <div class="reg">
-                    <p class="mb-0"><a href="#" class="mr-2">Sign Up</a> <a href="#">Log In</a></p>
+                    <p class="mb-0"><a href="/register" class="mr-2">Sign Up</a> <a href="/login">Log In</a></p>
                 </div>
             </div>
         </div>
@@ -60,7 +60,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand" href="index.html">Smart <span>store</span></a>
+        <a class="navbar-brand" href="/index">Smart <span>store</span></a>
         <div class="order-lg-last btn-group">
             <a href="#" class="btn-cart dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="flaticon-shopping-bag"></span>
@@ -101,12 +101,12 @@
 
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="/index" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
                 <li class="nav-item dropdown active">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown04">
-                        <a class="dropdown-item" href="product.html">Products</a>
+                        <a class="dropdown-item" href="/all">Products</a>
                         <a class="dropdown-item" href="product-single.html">Single Product</a>
                         <a class="dropdown-item" href="cart.html">Cart</a>
                         <a class="dropdown-item" href="checkout.html">Checkout</a>
@@ -125,7 +125,7 @@
     <div class="container">
         <div class="row no-gutters slider-text align-items-end justify-content-center">
             <div class="col-md-9 ftco-animate mb-5 text-center">
-                <p class="breadcrumbs mb-0"><span class="mr-2"><a href="index.html">Home <i class="fa fa-chevron-right"></i></a></span> <span>Products <i class="fa fa-chevron-right"></i></span></p>
+                <p class="breadcrumbs mb-0"><span class="mr-2"><a href="/index">Home <i class="fa fa-chevron-right"></i></a></span> <span>Products <i class="fa fa-chevron-right"></i></span></p>
                 <h2 class="mb-0 bread">Products</h2>
             </div>
         </div>
@@ -156,10 +156,12 @@
                             <div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/prod-<c:out value="${product.id}"/>.jpg);">
                                 <div class="desc">
 <%--                                    <p class="meta-prod d-flex">--%>
-<%--                                        <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>--%>
+                                    <form:form method="post" action="/cart/${product.id}" >
+                                       <a href="/cart/${product.id}" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"> Add to cart</span></a>
 <%--                                        <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>--%>
 <%--                                        <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>--%>
 <%--                                    </p>--%>
+                                    </form:form>
                                 </div>
                             </div>
                             <div class="text text-center">
@@ -193,10 +195,10 @@
                     <div class="categories">
                         <h3>Product category</h3>
                         <ul class="p-0">
-                            <li><a href="#">Laptop <span class="fa fa-chevron-right"></span></a></li>
-                            <li><a href="#">Tablet <span class="fa fa-chevron-right"></span></a></li>
-                            <li><a href="#">Phone <span class="fa fa-chevron-right"></span></a></li>
-                            <li><a href="#">Watch <span class="fa fa-chevron-right"></span></a></li>
+                            <li><a href="#">Laptops <span class="fa fa-chevron-right"></span></a></li>
+                            <li><a href="#">Tablets <span class="fa fa-chevron-right"></span></a></li>
+                            <li><a href="#">Phones <span class="fa fa-chevron-right"></span></a></li>
+                            <li><a href="#">Watches <span class="fa fa-chevron-right"></span></a></li>
                             <li><a href="#">Headphones <span class="fa fa-chevron-right"></span></a></li>
                         </ul>
                     </div>
@@ -211,7 +213,7 @@
         <div class="row mb-5">
             <div class="col-sm-12 col-md">
                 <div class="ftco-footer-widget mb-4">
-                    <h2 class="ftco-heading-2 logo"><a href="#">Liquor <span>Store</span></a></h2>
+                    <h2 class="ftco-heading-2 logo"><a href="#">Smart <span>Store</span></a></h2>
                     <p>Far far away, behind the word mountains, far from the countries.</p>
                     <ul class="ftco-footer-social list-unstyled mt-2">
                         <li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a></li>
