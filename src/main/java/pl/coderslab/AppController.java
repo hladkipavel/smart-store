@@ -10,6 +10,7 @@ import pl.coderslab.cart_item.CartItem;
 import pl.coderslab.cart_item.CartItemRepository;
 import pl.coderslab.cart_item.CartItemService;
 import pl.coderslab.product.Product;
+import pl.coderslab.product.ProductRepository;
 import pl.coderslab.product.ProductService;
 import pl.coderslab.user.User;
 import pl.coderslab.user.UserRepository;
@@ -17,6 +18,7 @@ import pl.coderslab.user.UserService;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Controller
 @RequestMapping("")
@@ -30,8 +32,10 @@ public class AppController {
     private CartItemRepository cartItemRepository;
 
     private UserRepository userRepository;
+    private ProductRepository productRepository;
 
-    public AppController(CartItemRepository cartItemRepository, UserRepository userRepository, ProductService productService, CartService cartService, CartItemService cartItemService, UserService userService) {
+    public AppController(ProductRepository productRepository, CartItemRepository cartItemRepository, UserRepository userRepository, ProductService productService, CartService cartService, CartItemService cartItemService, UserService userService) {
+        this.productRepository = productRepository;
         this.cartItemRepository = cartItemRepository;
         this.userRepository = userRepository;
         this.productService = productService;
@@ -75,12 +79,21 @@ public class AppController {
     }
 
     @GetMapping("/cart/{id}")
-    public String addToCart(@PathVariable Long id, HttpSession session){
+    public String addToCart(@PathVariable Long id, HttpSession session, Model model){
         Product product = productService.getProduct(id);
         User user = (User) session.getAttribute("user");
         Cart userCart = user.getCart();
         cartItemService.addCartItem(new CartItem(1, product.getName(), LocalDateTime.now(), userCart));
+        List<CartItem> listInCart = userCart.getCartItems();
+        model.addAttribute("listInCart", listInCart);
+        return "cartWithAdd";
+    }
 
-        return "addToCart";
+    @GetMapping("/cart-all")
+    public String viewAllInCart(HttpSession session, Model model){
+        User user = (User) session.getAttribute("user");
+        List<CartItem> cartItems = user.getCart().getCartItems();
+        model.addAttribute("cartItems", cartItems);
+        return "/viewAllInCart";
     }
 }

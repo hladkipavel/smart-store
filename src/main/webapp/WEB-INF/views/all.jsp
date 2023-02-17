@@ -88,7 +88,7 @@
                         <p class="mb-0"><a href="#" class="price">$22.50</a><span class="quantity ml-3">Quantity: 01</span></p>
                     </div>
                 </div>
-                <a class="dropdown-item text-center btn-link d-block w-100" href="cart.html">
+                <a class="dropdown-item text-center btn-link d-block w-100" href="/cart-all">
                     View All
                     <span class="ion-ios-arrow-round-forward"></span>
                 </a>
@@ -108,7 +108,7 @@
                     <div class="dropdown-menu" aria-labelledby="dropdown04">
                         <a class="dropdown-item" href="/all">Products</a>
                         <a class="dropdown-item" href="product-single.html">Single Product</a>
-                        <a class="dropdown-item" href="cart.html">Cart</a>
+                        <a class="dropdown-item" href="/cart">Cart</a>
                         <a class="dropdown-item" href="checkout.html">Checkout</a>
                     </div>
                 </li>
@@ -153,7 +153,8 @@
                     <c:forEach var="product" items="${products}">
                     <div class="col-md-4 d-flex">
                         <div class="product ftco-animate">
-                            <div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/prod-<c:out value="${product.id}"/>.jpg);">
+                            <div class="img d-flex align-items-center justify-content-center" style="background-image:
+                                    url(images/prod-<c:out value="${product.id}"/>.jpg);">
                                 <div class="desc">
 <%--                                    <p class="meta-prod d-flex">--%>
                                     <form:form method="post" action="/cart/${product.id}" >
