@@ -12,7 +12,7 @@ public class JpaCartService implements CartService{
     @Override
     public Cart addCart(Cart cart) {
         cartRepository.save(cart);
-        return cartRepository.getOne(cart.getId());
+        return cartRepository.findById(cart.getId()).orElse(null);
     }
 
     @Override
@@ -22,7 +22,7 @@ public class JpaCartService implements CartService{
 
     @Override
     public Cart getCart(Long id) {
-        return cartRepository.getOne(id);
+        return cartRepository.findById(id).orElse(null);
     }
 
     @Override

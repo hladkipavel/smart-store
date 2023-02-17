@@ -28,9 +28,10 @@ public class CartItem {
     @ManyToOne
     private Cart cart;
 
-    public CartItem(LocalDateTime addDate, Product product) {
+    public CartItem(int count, String productName, LocalDateTime addDate, Cart cart) {
+        this.count = count;
+        this.productName = productName;
         this.addDate = addDate;
-        this.productName = product.getName();
-        this.count = 1;
+        this.cart = cart;
     }
 }

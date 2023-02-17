@@ -7,10 +7,12 @@ import org.springframework.web.bind.annotation.*;
 import pl.coderslab.cart.Cart;
 import pl.coderslab.cart.CartService;
 import pl.coderslab.cart_item.CartItem;
+import pl.coderslab.cart_item.CartItemRepository;
 import pl.coderslab.cart_item.CartItemService;
 import pl.coderslab.product.Product;
 import pl.coderslab.product.ProductService;
 import pl.coderslab.user.User;
+import pl.coderslab.user.UserRepository;
 import pl.coderslab.user.UserService;
 
 import javax.servlet.http.HttpSession;
@@ -25,8 +27,13 @@ public class AppController {
     private CartService cartService;
     private CartItemService cartItemService;
     private UserService userService;
+    private CartItemRepository cartItemRepository;
 
-    public AppController(ProductService productService, CartService cartService, CartItemService cartItemService, UserService userService) {
+    private UserRepository userRepository;
+
+    public AppController(CartItemRepository cartItemRepository, UserRepository userRepository, ProductService productService, CartService cartService, CartItemService cartItemService, UserService userService) {
+        this.cartItemRepository = cartItemRepository;
+        this.userRepository = userRepository;
         this.productService = productService;
         this.cartService = cartService;
         this.cartItemService = cartItemService;
@@ -44,7 +51,7 @@ public class AppController {
         return "register";
     }
     @PostMapping("/register")
-    public String addNewUser(User user, Model model){
+    public String addNewUser(User user, Model model, HttpSession session){
         Cart cart = cartService.addCart(new Cart());
         user.setCart(cart);
         userService.addUser(user);
@@ -52,12 +59,13 @@ public class AppController {
         return "redirect:/login";
     }
     @PostMapping("/login")
-    public String loginUser(HttpSession session){
-        User user = (User) session.getAttribute("user");
-        User loginUser = userService.getUser(user.getId());
-        if(loginUser == null){
+    public String loginUser(@RequestParam String email,
+                            @RequestParam String password, HttpSession session){
+        User user = userRepository.findByEmail(email);
+        if(user == null){
             return "redirect:/register";
         }
+        session.setAttribute("user", user);
         return "redirect:/";
     }
 
@@ -66,11 +74,13 @@ public class AppController {
         return "login";
     }
 
-    @PostMapping("/cart/{id}")
-    public String addToCart(@RequestParam Long id, Model model){
+    @GetMapping("/cart/{id}")
+    public String addToCart(@PathVariable Long id, HttpSession session){
         Product product = productService.getProduct(id);
-        cartService.getCart(id);
-        cartItemService.addCartItem(new CartItem(LocalDateTime.now(), product));
-        return null;
+        User user = (User) session.getAttribute("user");
+        Cart userCart = user.getCart();
+        cartItemService.addCartItem(new CartItem(1, product.getName(), LocalDateTime.now(), userCart));
+
+        return "addToCart";
     }
 }

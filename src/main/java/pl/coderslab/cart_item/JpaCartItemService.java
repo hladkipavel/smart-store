@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Repository
 @RequiredArgsConstructor
 public class JpaCartItemService implements CartItemService{
-    private CartItemRepository cartItemRepository;
+    private final CartItemRepository cartItemRepository;
     @Override
     public void addCartItem(CartItem cartItem) {
         cartItemRepository.save(cartItem);
@@ -21,7 +21,7 @@ public class JpaCartItemService implements CartItemService{
 
     @Override
     public CartItem getCartItem(Long id) {
-        return cartItemRepository.getOne(id);
+        return cartItemRepository.findById(id).orElse(null);
     }
 
     @Override

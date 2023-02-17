@@ -10,8 +10,6 @@ import pl.coderslab.user.User;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 import static javax.persistence.GenerationType.*;
 
