@@ -157,7 +157,7 @@
                                     url(images/prod-<c:out value="${product.id}"/>.jpg);">
                                 <div class="desc">
 <%--                                    <p class="meta-prod d-flex">--%>
-                                    <form:form method="post" action="/cart/${product.id}" >
+                                    <form:form method="get" action="/cart/${product.id}" >
                                        <a href="/cart/${product.id}" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"> Add to cart</span></a>
 <%--                                        <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>--%>
 <%--                                        <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>--%>

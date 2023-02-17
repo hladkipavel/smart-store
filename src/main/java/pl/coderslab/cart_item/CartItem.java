@@ -27,11 +27,15 @@ public class CartItem {
     private LocalDateTime addDate;
     @ManyToOne
     private Cart cart;
+    @OneToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
 
-    public CartItem(int count, String productName, LocalDateTime addDate, Cart cart) {
+    public CartItem(int count, Product product, LocalDateTime addDate, Cart cart) {
         this.count = count;
-        this.productName = productName;
+        this.productName = product.getName();
         this.addDate = addDate;
         this.cart = cart;
+        this.product = product;
     }
 }

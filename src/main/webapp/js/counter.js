@@ -1,11 +1,25 @@
-const btnMuinus = document.querySelector('[data-action="minus"]');
-const btnPlus = document.querySelector('[data-action="plus"]');
-const counter = document.querySelector('[data-counter]');
 
-btnMuinus.addEventListener('click', function(){
-counter.innerText = --counter.innerText; 
-});
 
-btnPlus.addEventListener('click', function(){
-    counter.innerText = ++counter.innerText; 
+window.addEventListener('click', function(event){
+
+if(event.target.dataset.action === 'plus'){
+    const alertTotal = event.target.closest('.alert');
+    const counterWrapper = event.target.closest('.counter-wrapper');
+    const counter = counterWrapper.querySelector('[data-counter]');
+    counter.innerText = ++counter.innerText;
+    const priceOfProduct = alertTotal.querySelector('.price');
+    const totalPrice = alertTotal.querySelector('.total-price');
+    totalPrice.innerText = ((parseFloat(counter.innerText)) * (parseFloat(priceOfProduct.innerText))).toString();
+}
+if(event.target.dataset.action === 'minus'){
+    const alertTotal = event.target.closest('.alert');
+    const counterWrapper = event.target.closest('.counter-wrapper');
+    const counter = counterWrapper.querySelector('[data-counter]');
+        if(parseInt(counter.innerText) > 1){
+    counter.innerText = --counter.innerText;    
+    }
+    const priceOfProduct = alertTotal.querySelector('.price');
+    const totalPrice = alertTotal.querySelector('.total-price');
+    totalPrice.innerText = ((parseFloat(counter.innerText)) * (parseFloat(priceOfProduct.innerText))).toString();
+}
 });

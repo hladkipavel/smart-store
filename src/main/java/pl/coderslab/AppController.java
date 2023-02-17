@@ -65,7 +65,7 @@ public class AppController {
     @PostMapping("/login")
     public String loginUser(@RequestParam String email,
                             @RequestParam String password, HttpSession session){
-        User user = userRepository.findByEmail(email);
+        User user = userRepository.findById(9L).orElse(null);
         if(user == null){
             return "redirect:/register";
         }
@@ -83,10 +83,10 @@ public class AppController {
         Product product = productService.getProduct(id);
         User user = (User) session.getAttribute("user");
         Cart userCart = user.getCart();
-        cartItemService.addCartItem(new CartItem(1, product.getName(), LocalDateTime.now(), userCart));
+        cartItemService.addCartItem(new CartItem(1, product, LocalDateTime.now(), userCart));
         List<CartItem> listInCart = userCart.getCartItems();
         model.addAttribute("listInCart", listInCart);
-        return "cartWithAdd";
+        return "redirect:/all";
     }
 
     @GetMapping("/cart-all")

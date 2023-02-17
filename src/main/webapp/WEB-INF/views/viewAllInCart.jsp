@@ -1,4 +1,6 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%--
   Created by IntelliJ IDEA.
   User: pavelgladky
@@ -166,16 +168,18 @@
 <%--                <span>Fugiat voluptates quasi nemo, ipsa perferendis</span>--%>
               </div>
             </td>
-            <td>$1444.99</td>
+            <td class="price"><c:out value="${item.product.price}"/></td>
             <td class="quantity">
               <div class="input-group">
 <%--                <input type="text" name="quantity" class="quantity form-control input-number" value="2" min="1" max="100">--%>
+                <div class="counter-wrapper">
                       <button class="items_control" data-action = "minus">-</button>
-                      <div class="items_current" data-counter>  1  </div>
+                      <div class="items_current" data-counter>1</div>
                       <button class="items_control" data-action = "plus">+</button>
+                </div>
               </div>
             </td>
-            <td>$89.98</td>
+            <td class="total-price">89.98</td>
             <td>
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true"><i class="fa fa-close"></i></span>
