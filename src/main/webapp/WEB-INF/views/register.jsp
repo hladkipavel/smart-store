@@ -8,8 +8,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
+<jsp:include page="header.jsp"/>
     <title>Title</title>
 </head>
 <body>
@@ -29,7 +28,4 @@
     <form:errors path="password" cssClass="error"/></br>
     <input type="submit" value="Registration">
 </form:form>
-
-
-</body>
-</html>
+<jsp:include page="footer.jsp"/>

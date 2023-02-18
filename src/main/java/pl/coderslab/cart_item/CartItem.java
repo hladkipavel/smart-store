@@ -23,6 +23,7 @@ public class CartItem {
     @Column(name = "product_name")
     private String productName;
     private int count;
+
     @Column(name = "add_date")
     private LocalDateTime addDate;
     @ManyToOne

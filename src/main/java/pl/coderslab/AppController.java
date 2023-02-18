@@ -25,14 +25,14 @@ import java.util.List;
 @SessionAttributes("user")
 public class AppController {
 
-    private ProductService productService;
-    private CartService cartService;
-    private CartItemService cartItemService;
-    private UserService userService;
-    private CartItemRepository cartItemRepository;
+    private final ProductService productService;
+    private final CartService cartService;
+    private final CartItemService cartItemService;
+    private final UserService userService;
+    private final CartItemRepository cartItemRepository;
 
-    private UserRepository userRepository;
-    private ProductRepository productRepository;
+    private final UserRepository userRepository;
+    private final ProductRepository productRepository;
 
     public AppController(ProductRepository productRepository, CartItemRepository cartItemRepository, UserRepository userRepository, ProductService productService, CartService cartService, CartItemService cartItemService, UserService userService) {
         this.productRepository = productRepository;
@@ -92,8 +92,21 @@ public class AppController {
     @GetMapping("/cart-all")
     public String viewAllInCart(HttpSession session, Model model){
         User user = (User) session.getAttribute("user");
+        if(user == null){
+            return "redirect:/register";
+        }
         List<CartItem> cartItems = user.getCart().getCartItems();
         model.addAttribute("cartItems", cartItems);
         return "/viewAllInCart";
     }
+//    @GetMapping("/after-change/")
+//    public String updateCountProduct(@RequestParam(name="counter") int count,
+//                                     @RequestParam(name="total-price") String price,
+//                                     @RequestParam(value = "id") Long id){
+//        double priceDouble = Double.parseDouble(price.replace("$", ""));
+//        CartItem cartItem = cartItemRepository.findById(id).orElse(null);
+//        cartItem.setCount(count);
+//        cartItemRepository.save(cartItem);
+//        return "all";
+//    }
 }

@@ -5,9 +5,7 @@
   Time: 18:27
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
+<jsp:include page="header.jsp"/>
     <title>Title</title>
 </head>
 <body>
@@ -21,6 +19,4 @@
     </div>
     <button class="btn btn-color rounded-0" type="submit">Log In</button>
 </form>
-
-</body>
-</html>
+<jsp:include page="footer.jsp"/>
