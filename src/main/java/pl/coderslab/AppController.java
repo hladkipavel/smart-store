@@ -1,14 +1,15 @@
 package pl.coderslab;
 
-import org.dom4j.rule.Mode;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.cart.Cart;
 import pl.coderslab.cart.CartService;
-import pl.coderslab.cart_item.CartItem;
-import pl.coderslab.cart_item.CartItemRepository;
-import pl.coderslab.cart_item.CartItemService;
+import pl.coderslab.cart_item.*;
 import pl.coderslab.product.Product;
 import pl.coderslab.product.ProductRepository;
 import pl.coderslab.product.ProductService;
@@ -19,6 +20,8 @@ import pl.coderslab.user.UserService;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("")
@@ -34,7 +37,8 @@ public class AppController {
     private final UserRepository userRepository;
     private final ProductRepository productRepository;
 
-    public AppController(ProductRepository productRepository, CartItemRepository cartItemRepository, UserRepository userRepository, ProductService productService, CartService cartService, CartItemService cartItemService, UserService userService) {
+
+    public AppController( ProductRepository productRepository, CartItemRepository cartItemRepository, UserRepository userRepository, ProductService productService, CartService cartService, CartItemService cartItemService, UserService userService) {
         this.productRepository = productRepository;
         this.cartItemRepository = cartItemRepository;
         this.userRepository = userRepository;
@@ -42,6 +46,7 @@ public class AppController {
         this.cartService = cartService;
         this.cartItemService = cartItemService;
         this.userService = userService;
+
     }
 
     @GetMapping("")
@@ -55,11 +60,12 @@ public class AppController {
         return "register";
     }
     @PostMapping("/register")
-    public String addNewUser(User user, Model model, HttpSession session){
+    public String addNewUser(User user, Model model){
         Cart cart = cartService.addCart(new Cart());
         user.setCart(cart);
         userService.addUser(user);
         model.addAttribute("user", user);
+        model.addAttribute("cart", cart);
         return "redirect:/login";
     }
     @PostMapping("/login")
@@ -83,7 +89,8 @@ public class AppController {
         Product product = productService.getProduct(id);
         User user = (User) session.getAttribute("user");
         Cart userCart = user.getCart();
-        cartItemService.addCartItem(new CartItem(1, product, LocalDateTime.now(), userCart));
+        cartItemRepository.save(new CartItem(1, product, LocalDateTime.now(), userCart));
+        user.setCart(userCart);
         List<CartItem> listInCart = userCart.getCartItems();
         model.addAttribute("listInCart", listInCart);
         return "redirect:/all";
@@ -92,21 +99,29 @@ public class AppController {
     @GetMapping("/cart-all")
     public String viewAllInCart(HttpSession session, Model model){
         User user = (User) session.getAttribute("user");
+        user.setCart(cartService.getCart(user.getId()));
+        model.addAttribute("user", user);
         if(user == null){
             return "redirect:/register";
         }
         List<CartItem> cartItems = user.getCart().getCartItems();
         model.addAttribute("cartItems", cartItems);
-        return "/viewAllInCart";
+        return "cartAll";
     }
-//    @GetMapping("/after-change/")
-//    public String updateCountProduct(@RequestParam(name="counter") int count,
-//                                     @RequestParam(name="total-price") String price,
-//                                     @RequestParam(value = "id") Long id){
-//        double priceDouble = Double.parseDouble(price.replace("$", ""));
-//        CartItem cartItem = cartItemRepository.findById(id).orElse(null);
-//        cartItem.setCount(count);
-//        cartItemRepository.save(cartItem);
-//        return "all";
-//    }
+    @GetMapping("/after-change/{id}/{counter}")
+    @ResponseBody
+    public String updateCountProduct(@PathVariable Long id,
+                                     @PathVariable Integer counter) {
+        CartItem cartItem = cartItemRepository.findById(id).orElse(null);
+        cartItem.setCount(counter);
+        cartItemRepository.save(cartItem);
+        return "all";
+    }
+    @GetMapping("/{id}")
+    public String getSingleProduct(@PathVariable Long id, Model model){
+        Product product = productService.getProduct(id);
+        model.addAttribute("product", product);
+        return "productSingle";
+    }
+
 }

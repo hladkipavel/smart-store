@@ -32,8 +32,13 @@
 //        this.cartItemRepository = cartItemRepository;
 //    }
 //
-//    @PostMapping("/after-change")
-//    public String getChanges(@RequestBody LinkedHashMap product, HttpSession session){
+//    @GetMapping("/after-change/{id}/{counter}")
+//    @ResponseBody
+//    public void getChanges(@PathVariable Long id,
+//                             @PathVariable Integer counter){
+//        CartItem cartItem = cartItemRepository.findByProductId(id);
+//        cartItem.setCount(counter);
+//        cartItemRepository.save(cartItem);
 ////        ObjectMapper objectMapper = new ObjectMapper();
 ////        List<Product> productList = new ArrayList<>();
 ////        try{
@@ -46,7 +51,6 @@
 ////        HashMap<> = products.get("products");
 ////      User user = (User) session.getAttribute("user");
 ////        List<CartItem> items =  user.getCart().getCartItems();
-////        cartItemRepository.getCartItemByProductName(products.getName());
-//        return "redirect:/";
+////        cartItemRepository.getCartItemByProductName(products.getName())
 //    }
 //}

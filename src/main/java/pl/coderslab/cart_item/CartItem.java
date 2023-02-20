@@ -20,9 +20,8 @@ public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "product_name")
-    private String productName;
-    private int count;
+
+    private Integer count;
 
     @Column(name = "add_date")
     private LocalDateTime addDate;
@@ -34,7 +33,6 @@ public class CartItem {
 
     public CartItem(int count, Product product, LocalDateTime addDate, Cart cart) {
         this.count = count;
-        this.productName = product.getName();
         this.addDate = addDate;
         this.cart = cart;
         this.product = product;

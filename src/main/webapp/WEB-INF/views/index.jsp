@@ -5,8 +5,10 @@
   Time: 17:35
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="header.jsp"/>
-
 
 <div class="hero-wrap" style="background-image: url('images/bg_2.jpg');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
@@ -135,7 +137,7 @@
         <div class="row justify-content-center pb-5">
             <div class="col-md-7 heading-section text-center ftco-animate">
                 <span class="subheading">Our Delightful offerings</span>
-                <h2>Tastefully Yours</h2>
+                <h2>Bestseller</h2>
             </div>
         </div>
         <div class="row">
@@ -151,10 +153,9 @@
                         </div>
                     </div>
                     <div class="text text-center">
-                        <span class="sale">Sale</span>
-                        <span class="category">Brandy</span>
-                        <h2>Bacardi 151</h2>
-                        <p class="mb-0"><span class="price price-sale">$69.00</span> <span class="price">$49.00</span></p>
+                        <span class="category">Laptop</span>
+                        <h2>laptop</h2>
+                        <p class="mb-0"><span class="price">$49.00</span></p>
                     </div>
                 </div>
             </div>
@@ -170,9 +171,8 @@
                         </div>
                     </div>
                     <div class="text text-center">
-                        <span class="seller">Best Seller</span>
-                        <span class="category">Gin</span>
-                        <h2>Jim Beam Kentucky Straight</h2>
+                        <span class="category">laptop</span>
+                        <h2>laptop</h2>
                         <span class="price">$69.00</span>
                     </div>
                 </div>
@@ -189,9 +189,8 @@
                         </div>
                     </div>
                     <div class="text text-center">
-                        <span class="new">New Arrival</span>
-                        <span class="category">Rum</span>
-                        <h2>Citadelle</h2>
+                        <span class="category">laptop</span>
+                        <h2>laptop</h2>
                         <span class="price">$69.00</span>
                     </div>
                 </div>
@@ -208,8 +207,8 @@
                         </div>
                     </div>
                     <div class="text text-center">
-                        <span class="category">Rum</span>
-                        <h2>The Glenlivet</h2>
+                        <span class="category">laptop</span>
+                        <h2>laptop</h2>
                         <span class="price">$69.00</span>
                     </div>
                 </div>
@@ -227,8 +226,8 @@
                         </div>
                     </div>
                     <div class="text text-center">
-                        <span class="category">Whiskey</span>
-                        <h2>Black Label</h2>
+                        <span class="category">laptop</span>
+                        <h2>laptop</h2>
                         <span class="price">$69.00</span>
                     </div>
                 </div>
@@ -245,8 +244,8 @@
                         </div>
                     </div>
                     <div class="text text-center">
-                        <span class="category">Tequila</span>
-                        <h2>Macallan</h2>
+                        <span class="category">laptop</span>
+                        <h2>laptop</h2>
                         <span class="price">$69.00</span>
                     </div>
                 </div>
@@ -263,8 +262,8 @@
                         </div>
                     </div>
                     <div class="text text-center">
-                        <span class="category">Vodka</span>
-                        <h2>Old Monk</h2>
+                        <span class="category">laptop</span>
+                        <h2>laptop</h2>
                         <span class="price">$69.00</span>
                     </div>
                 </div>
@@ -281,8 +280,8 @@
                         </div>
                     </div>
                     <div class="text text-center">
-                        <span class="category">Whiskey</span>
-                        <h2>Jameson Irish Whiskey</h2>
+                        <span class="category">laptop</span>
+                        <h2>laptop</h2>
                         <span class="price">$69.00</span>
                     </div>
                 </div>
@@ -295,7 +294,6 @@
         </div>
     </div>
 </section>
-<jsp:include page="footer.jsp"/>
 
 <%--<section class="ftco-section testimony-section img" style="background-image: url(images/bg_4.jpg);">--%>
 <%--    <div class="overlay"></div>--%>
@@ -464,3 +462,5 @@
 <%--        </div>--%>
 <%--    </div>--%>
 <%--</section>--%>
+
+<jsp:include page="footer.jsp"/>

@@ -9,8 +9,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="header.jsp"/>
-    <title>Title</title>
-</head>
 <body>
 <form:form method="post" modelAttribute="user">
     <label>Registration</label></br>
@@ -28,4 +26,5 @@
     <form:errors path="password" cssClass="error"/></br>
     <input type="submit" value="Registration">
 </form:form>
+</body>
 <jsp:include page="footer.jsp"/>

@@ -48,12 +48,13 @@
               </label>
             </td>
             <td>
-              <div class="img" style="background-image: url(images/prod-<c:out value="${item.id}"/>.jpg);"></div>
+              <div class="img" style="background-image: url(images/prod-<c:out value="${item.product.id}"/>.jpg);"></div>
             </td>
             <td>
               <div class="email">
-                <span><c:out value="${item.productName}"/></span>
+                <span><c:out value="${item.product.name}"/></span>
                 <input class="id" type="hidden" value="${item.id}">
+                <input class="cart" type="hidden" value=${item.cart.id}>
 <%--                <span>Fugiat voluptates quasi nemo, ipsa perferendis</span>--%>
               </div>
             </td>
@@ -63,12 +64,12 @@
 <%--                <input type="text" name="quantity" class="quantity form-control input-number" value="2" min="1" max="100">--%>
                 <div class="counter-wrapper">
                       <button class="items_control" data-action = "minus">-</button>
-                      <div class="items_current" name="counter" data-counter>1</div>
+                      <div class="items_current" name="counter" data-counter>${item.count}</div>
                       <button class="items_control" data-action = "plus">+</button>
                 </div>
               </div>
             </td>
-            <td class="total-price" name="total-price">$<c:out value="${item.product.price}"/></td>
+            <td class="total-price" name="total-price">$<c:out value="${item.product.price * item.count}"/></td>
             <td>
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true"><i class="fa fa-close"></i></span>

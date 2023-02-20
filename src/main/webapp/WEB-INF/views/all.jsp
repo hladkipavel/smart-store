@@ -46,12 +46,12 @@
                             <div class="img d-flex align-items-center justify-content-center" style="background-image:
                                     url(images/prod-<c:out value="${product.id}"/>.jpg);">
                                 <div class="desc">
-<%--                                    <p class="meta-prod d-flex">--%>
+                                    <p class="meta-prod d-flex">
                                     <form:form method="get" action="/cart/${product.id}" >
-                                       <a href="/cart/${product.id}" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"> Add to cart</span></a>
+                                       <a href="/cart/${product.id}" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag">Add to cart</span></a>
 <%--                                        <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>--%>
-<%--                                        <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>--%>
-<%--                                    </p>--%>
+                                        <a href="/${product.id}" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility">View product</span></a>
+                                    </p>
                                     </form:form>
                                 </div>
                             </div>
