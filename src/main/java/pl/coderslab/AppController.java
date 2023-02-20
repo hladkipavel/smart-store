@@ -1,13 +1,10 @@
 package pl.coderslab;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.cart.Cart;
+import pl.coderslab.cart.CartRepository;
 import pl.coderslab.cart.CartService;
 import pl.coderslab.cart_item.*;
 import pl.coderslab.product.Product;
@@ -20,12 +17,10 @@ import pl.coderslab.user.UserService;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("")
-@SessionAttributes("user")
+@SessionAttributes({"user", "cart"})
 public class AppController {
 
     private final ProductService productService;
@@ -36,9 +31,10 @@ public class AppController {
 
     private final UserRepository userRepository;
     private final ProductRepository productRepository;
+    private final CartRepository cartRepository;
 
 
-    public AppController( ProductRepository productRepository, CartItemRepository cartItemRepository, UserRepository userRepository, ProductService productService, CartService cartService, CartItemService cartItemService, UserService userService) {
+    public AppController(ProductRepository productRepository, CartItemRepository cartItemRepository, UserRepository userRepository, ProductService productService, CartService cartService, CartItemService cartItemService, UserService userService, CartRepository cartRepository) {
         this.productRepository = productRepository;
         this.cartItemRepository = cartItemRepository;
         this.userRepository = userRepository;
@@ -47,6 +43,7 @@ public class AppController {
         this.cartItemService = cartItemService;
         this.userService = userService;
 
+        this.cartRepository = cartRepository;
     }
 
     @GetMapping("")
@@ -61,9 +58,9 @@ public class AppController {
     }
     @PostMapping("/register")
     public String addNewUser(User user, Model model){
-        Cart cart = cartService.addCart(new Cart());
+        Cart cart = cartRepository.save(new Cart());
         user.setCart(cart);
-        userService.addUser(user);
+        userRepository.save(user);
         model.addAttribute("user", user);
         model.addAttribute("cart", cart);
         return "redirect:/login";
@@ -75,7 +72,9 @@ public class AppController {
         if(user == null){
             return "redirect:/register";
         }
+        Cart cart = user.getCart();
         session.setAttribute("user", user);
+        session.setAttribute("cart", cart);
         return "redirect:/";
     }
 
@@ -88,10 +87,21 @@ public class AppController {
     public String addToCart(@PathVariable Long id, HttpSession session, Model model){
         Product product = productService.getProduct(id);
         User user = (User) session.getAttribute("user");
-        Cart userCart = user.getCart();
-        cartItemRepository.save(new CartItem(1, product, LocalDateTime.now(), userCart));
-        user.setCart(userCart);
-        List<CartItem> listInCart = userCart.getCartItems();
+        Cart cart = (Cart) session.getAttribute("cart");
+        List<CartItem> cartItems = cart.getCartItems();
+        CartItem cartItem = cartItemRepository.findByProductIdAndCartId(id, cart.getId());
+        if (cartItem != null){
+            cartItem.setAddDate(LocalDateTime.now());
+            cartItem.setCount(cartItem.getCount() + 1);
+        }else{
+            cartItem = new CartItem(1, product, LocalDateTime.now(),cart);
+        }
+        cartItemRepository.save(cartItem);
+        cart = cartRepository.findById(user.getId()).orElse(null);
+        model.addAttribute("cart", cart);
+        user.setCart(cart);
+        model.addAttribute("user", user);
+        List<CartItem> listInCart = cart.getCartItems();
         model.addAttribute("listInCart", listInCart);
         return "redirect:/all";
     }
@@ -99,8 +109,10 @@ public class AppController {
     @GetMapping("/cart-all")
     public String viewAllInCart(HttpSession session, Model model){
         User user = (User) session.getAttribute("user");
-        user.setCart(cartService.getCart(user.getId()));
+        Cart cart = cartRepository.findById(user.getId()).orElse(null);
+        user.setCart(cart);
         model.addAttribute("user", user);
+        model.addAttribute("cart", cart);
         if(user == null){
             return "redirect:/register";
         }
