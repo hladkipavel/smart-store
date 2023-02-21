@@ -141,151 +141,154 @@
             </div>
         </div>
         <div class="row">
+            <c:forEach var="product" items="${allProducts}" begin="0" end="9">
             <div class="col-md-3 d-flex">
                 <div class="product ftco-animate">
-                    <div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/prod-1.jpg);">
+                    <div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/prod-${product.id}.jpg);">
                         <div class="desc">
                             <p class="meta-prod d-flex">
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>
+                                <a href="/cart/${product.id}" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
+<%--                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>--%>
+                                <a href="/${product.id}" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>
                             </p>
                         </div>
                     </div>
                     <div class="text text-center">
-                        <span class="category">Laptop</span>
-                        <h2>laptop</h2>
-                        <p class="mb-0"><span class="price">$49.00</span></p>
+                        <span class="category">${product.category.name}</span>
+                        <h2>${product.name}</h2>
+                        <p class="mb-0"><span class="price">$${product.price}</span></p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 d-flex">
-                <div class="product ftco-animate">
-                    <div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/prod-2.jpg);">
-                        <div class="desc">
-                            <p class="meta-prod d-flex">
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="text text-center">
-                        <span class="category">laptop</span>
-                        <h2>laptop</h2>
-                        <span class="price">$69.00</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 d-flex">
-                <div class="product ftco-animate">
-                    <div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/prod-3.jpg);">
-                        <div class="desc">
-                            <p class="meta-prod d-flex">
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="text text-center">
-                        <span class="category">laptop</span>
-                        <h2>laptop</h2>
-                        <span class="price">$69.00</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 d-flex">
-                <div class="product ftco-animate">
-                    <div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/prod-4.jpg);">
-                        <div class="desc">
-                            <p class="meta-prod d-flex">
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="text text-center">
-                        <span class="category">laptop</span>
-                        <h2>laptop</h2>
-                        <span class="price">$69.00</span>
-                    </div>
-                </div>
-            </div>
+            </c:forEach>
+<%--            <div class="col-md-3 d-flex">--%>
+<%--                <div class="product ftco-animate">--%>
+<%--                    <div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/prod-2.jpg);">--%>
+<%--                        <div class="desc">--%>
+<%--                            <p class="meta-prod d-flex">--%>
+<%--                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>--%>
+<%--                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>--%>
+<%--                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>--%>
+<%--                            </p>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                    <div class="text text-center">--%>
+<%--                        <span class="category">laptop</span>--%>
+<%--                        <h2>laptop</h2>--%>
+<%--                        <span class="price">$69.00</span>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <div class="col-md-3 d-flex">--%>
+<%--                <div class="product ftco-animate">--%>
+<%--                    <div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/prod-3.jpg);">--%>
+<%--                        <div class="desc">--%>
+<%--                            <p class="meta-prod d-flex">--%>
+<%--                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>--%>
+<%--                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>--%>
+<%--                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>--%>
+<%--                            </p>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                    <div class="text text-center">--%>
+<%--                        <span class="category">laptop</span>--%>
+<%--                        <h2>laptop</h2>--%>
+<%--                        <span class="price">$69.00</span>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <div class="col-md-3 d-flex">--%>
+<%--                <div class="product ftco-animate">--%>
+<%--                    <div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/prod-4.jpg);">--%>
+<%--                        <div class="desc">--%>
+<%--                            <p class="meta-prod d-flex">--%>
+<%--                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>--%>
+<%--                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>--%>
+<%--                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>--%>
+<%--                            </p>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                    <div class="text text-center">--%>
+<%--                        <span class="category">laptop</span>--%>
+<%--                        <h2>laptop</h2>--%>
+<%--                        <span class="price">$69.00</span>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
 
-            <div class="col-md-3 d-flex">
-                <div class="product ftco-animate">
-                    <div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/prod-5.jpg);">
-                        <div class="desc">
-                            <p class="meta-prod d-flex">
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="text text-center">
-                        <span class="category">laptop</span>
-                        <h2>laptop</h2>
-                        <span class="price">$69.00</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 d-flex">
-                <div class="product ftco-animate">
-                    <div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/prod-6.jpg);">
-                        <div class="desc">
-                            <p class="meta-prod d-flex">
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="text text-center">
-                        <span class="category">laptop</span>
-                        <h2>laptop</h2>
-                        <span class="price">$69.00</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 d-flex">
-                <div class="product ftco-animate">
-                    <div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/prod-7.jpg);">
-                        <div class="desc">
-                            <p class="meta-prod d-flex">
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="text text-center">
-                        <span class="category">laptop</span>
-                        <h2>laptop</h2>
-                        <span class="price">$69.00</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 d-flex">
-                <div class="product ftco-animate">
-                    <div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/prod-8.jpg);">
-                        <div class="desc">
-                            <p class="meta-prod d-flex">
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>
-                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="text text-center">
-                        <span class="category">laptop</span>
-                        <h2>laptop</h2>
-                        <span class="price">$69.00</span>
-                    </div>
-                </div>
-            </div>
+<%--            <div class="col-md-3 d-flex">--%>
+<%--                <div class="product ftco-animate">--%>
+<%--                    <div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/prod-5.jpg);">--%>
+<%--                        <div class="desc">--%>
+<%--                            <p class="meta-prod d-flex">--%>
+<%--                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>--%>
+<%--                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>--%>
+<%--                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>--%>
+<%--                            </p>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                    <div class="text text-center">--%>
+<%--                        <span class="category">laptop</span>--%>
+<%--                        <h2>laptop</h2>--%>
+<%--                        <span class="price">$69.00</span>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <div class="col-md-3 d-flex">--%>
+<%--                <div class="product ftco-animate">--%>
+<%--                    <div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/prod-6.jpg);">--%>
+<%--                        <div class="desc">--%>
+<%--                            <p class="meta-prod d-flex">--%>
+<%--                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>--%>
+<%--                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>--%>
+<%--                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>--%>
+<%--                            </p>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                    <div class="text text-center">--%>
+<%--                        <span class="category">laptop</span>--%>
+<%--                        <h2>laptop</h2>--%>
+<%--                        <span class="price">$69.00</span>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <div class="col-md-3 d-flex">--%>
+<%--                <div class="product ftco-animate">--%>
+<%--                    <div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/prod-7.jpg);">--%>
+<%--                        <div class="desc">--%>
+<%--                            <p class="meta-prod d-flex">--%>
+<%--                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>--%>
+<%--                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>--%>
+<%--                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>--%>
+<%--                            </p>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                    <div class="text text-center">--%>
+<%--                        <span class="category">laptop</span>--%>
+<%--                        <h2>laptop</h2>--%>
+<%--                        <span class="price">$69.00</span>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <div class="col-md-3 d-flex">--%>
+<%--                <div class="product ftco-animate">--%>
+<%--                    <div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/prod-8.jpg);">--%>
+<%--                        <div class="desc">--%>
+<%--                            <p class="meta-prod d-flex">--%>
+<%--                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>--%>
+<%--                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>--%>
+<%--                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>--%>
+<%--                            </p>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                    <div class="text text-center">--%>
+<%--                        <span class="category">laptop</span>--%>
+<%--                        <h2>laptop</h2>--%>
+<%--                        <span class="price">$69.00</span>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
         </div>
         <div class="row justify-content-center">
             <div class="col-md-4">
@@ -293,6 +296,7 @@
             </div>
         </div>
     </div>
+
 </section>
 
 <%--<section class="ftco-section testimony-section img" style="background-image: url(images/bg_4.jpg);">--%>

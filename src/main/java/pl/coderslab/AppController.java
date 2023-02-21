@@ -8,6 +8,7 @@ import pl.coderslab.cart.CartRepository;
 import pl.coderslab.cart.CartService;
 import pl.coderslab.cart_item.*;
 import pl.coderslab.product.Product;
+import pl.coderslab.product.ProductController;
 import pl.coderslab.product.ProductRepository;
 import pl.coderslab.product.ProductService;
 import pl.coderslab.user.User;
@@ -47,7 +48,9 @@ public class AppController {
     }
 
     @GetMapping("")
-    public String showMain(){
+    public String showMain(Model model){
+        List<Product> allProducts = productRepository.findLastAddedProducts();
+        model.addAttribute("allProducts", allProducts);
         return "index";
     }
 
@@ -87,8 +90,10 @@ public class AppController {
     public String addToCart(@PathVariable Long id, HttpSession session, Model model){
         Product product = productService.getProduct(id);
         User user = (User) session.getAttribute("user");
+        if(user == null){
+            return "redirect:/login";
+        }
         Cart cart = (Cart) session.getAttribute("cart");
-        List<CartItem> cartItems = cart.getCartItems();
         CartItem cartItem = cartItemRepository.findByProductIdAndCartId(id, cart.getId());
         if (cartItem != null){
             cartItem.setAddDate(LocalDateTime.now());

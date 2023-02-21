@@ -29,14 +29,6 @@
                 <div class="row mb-4">
                     <div class="col-md-12 d-flex justify-content-between align-items-center">
                         <h4 class="product-select">Products</h4>
-<%--                        <select class="selectpicker" multiple>--%>
-<%--                            <option>Brandy</option>--%>
-<%--                            <option>Gin</option>--%>
-<%--                            <option>Rum</option>--%>
-<%--                            <option>Tequila</option>--%>
-<%--                            <option>Vodka</option>--%>
-<%--                            <option>Whiskey</option>--%>
-<%--                        </select>--%>
                     </div>
                 </div>
                 <div class="row">
@@ -47,12 +39,9 @@
                                     url(images/prod-<c:out value="${product.id}"/>.jpg);">
                                 <div class="desc">
                                     <p class="meta-prod d-flex">
-                                    <form:form method="get" action="/cart/${product.id}" >
-                                       <a href="/cart/${product.id}" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag">Add to cart</span></a>
-<%--                                        <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>--%>
-                                        <a href="/${product.id}" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility">View product</span></a>
+                                       <a href="/cart/${product.id}" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
+                                        <a href="/${product.id}" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>
                                     </p>
-                                    </form:form>
                                 </div>
                             </div>
                             <div class="text text-center">
@@ -86,11 +75,9 @@
                     <div class="categories">
                         <h3>Product category</h3>
                         <ul class="p-0">
-                            <li><a href="#">Laptops <span class="fa fa-chevron-right"></span></a></li>
-                            <li><a href="#">Tablets <span class="fa fa-chevron-right"></span></a></li>
-                            <li><a href="#">Phones <span class="fa fa-chevron-right"></span></a></li>
-                            <li><a href="#">Watches <span class="fa fa-chevron-right"></span></a></li>
-                            <li><a href="#">Headphones <span class="fa fa-chevron-right"></span></a></li>
+                            <c:forEach var="category" items="${categories}">
+                            <li><a href="/find-by-category/${category.id}">${category.name} <span class="fa fa-chevron-right"></span></a></li>
+                            </c:forEach>
                         </ul>
                     </div>
                 </div>
