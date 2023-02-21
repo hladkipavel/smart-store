@@ -9,15 +9,65 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="header.jsp"/>
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container">
+        <a class="navbar-brand" href="/">Smart <span>store</span></a>
+        <div class="order-lg-last btn-group">
+            <c:if test="${not empty user}">
+            <a href="#" class="btn-cart dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="flaticon-shopping-bag"></span>
+                <div class="d-flex justify-content-center align-items-center"><small>${cart.getCartItems().size()}</small></div>
+            </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <c:forEach items="${cart.getCartItems()}" var="item" begin="0" end="4">
+                        <div class="dropdown-item d-flex align-items-start" href="#">
+                            <div class="img" style="background-image: url(/images/prod-${item.product.id}.jpg);"></div>
+                            <div class="text pl-3">
+                                <h4>${item.product.name}</h4>
+                                <p class="mb-0"><a href="#" class="price">$${item.product.price * item.count}</a><span class="quantity ml-3">Quantity: ${item.count}</span></p>
+                            </div>
+                        </div>
+                    </c:forEach>
+                    <a class="dropdown-item text-center btn-link d-block w-100" href="/cart-all">
+                        View All
+                        <span class="ion-ios-arrow-round-forward"></span>
+                    </a>
+                </div>
+            </c:if>
+        </div>
 
-<div class="hero-wrap" style="background-image: url('images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="oi oi-menu"></span> Menu
+        </button>
+
+        <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active"><a href="/" class="nav-link">Home</a></li>
+<%--                <li class="nav-item"><a href="/" class="nav-link">About</a></li>--%>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown04">
+                        <a class="dropdown-item" href="/all">Products</a>
+                        <a class="dropdown-item" href="/cart-all">Cart</a>
+                        <a class="dropdown-item" href="checkout.html">Checkout</a>
+                    </div>
+                </li>
+                <li class="nav-item"><a href="" class="nav-link">My Account</a></li>
+                <li class="nav-item"><a href="#part1" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<%--NAV--%>
+
+<div class="hero-wrap" style="background-image: url('/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
             <div class="col-md-8 ftco-animate d-flex align-items-end">
                 <div class="text w-100 text-center">
                     <h1 class="mb-4">Welcome to the <span>Smart store</span></h1>
-                    <p><a href="#" class="btn btn-white btn-outline-white py-2 px-4">Shop Now</a> <a href="/all" class="btn btn-white btn-outline-white py-2 px-4">Read more</a></p>
+                    <p><a href="/all" class="btn btn-white btn-outline-white py-2 px-4">Shop Now</a> <a href="/about" class="btn btn-white btn-outline-white py-2 px-4">Read more</a></p>
                 </div>
             </div>
         </div>
@@ -76,13 +126,6 @@
 
                     <p>Reach for reliability!
                         Hold on tight, because here's the reliably fast and ultralight MacBook Air. Designed to meet the expectations of its user and refined from every angle, it is an efficient solution for work, everyday activities and playing games. Experience the power of an improved generation of integrated circuits that offer even greater speed and energy efficiency.</p>
-<%--                    <p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country.</p>--%>
-<%--                    <p class="year">--%>
-<%--                        <strong class="number" data-number="115">0</strong>--%>
-<%--                        <span>Years of Experience In Business</span>--%>
-<%--                    </p>--%>
-                </div>
-
             </div>
         </div>
     </div>

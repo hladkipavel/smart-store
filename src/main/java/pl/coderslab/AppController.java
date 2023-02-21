@@ -25,9 +25,6 @@ import java.util.List;
 public class AppController {
 
     private final ProductService productService;
-    private final CartService cartService;
-    private final CartItemService cartItemService;
-    private final UserService userService;
     private final CartItemRepository cartItemRepository;
 
     private final UserRepository userRepository;
@@ -35,15 +32,11 @@ public class AppController {
     private final CartRepository cartRepository;
 
 
-    public AppController(ProductRepository productRepository, CartItemRepository cartItemRepository, UserRepository userRepository, ProductService productService, CartService cartService, CartItemService cartItemService, UserService userService, CartRepository cartRepository) {
+    public AppController(ProductRepository productRepository, CartItemRepository cartItemRepository, UserRepository userRepository, ProductService productService,CartRepository cartRepository) {
         this.productRepository = productRepository;
         this.cartItemRepository = cartItemRepository;
         this.userRepository = userRepository;
         this.productService = productService;
-        this.cartService = cartService;
-        this.cartItemService = cartItemService;
-        this.userService = userService;
-
         this.cartRepository = cartRepository;
     }
 
@@ -51,6 +44,7 @@ public class AppController {
     public String showMain(Model model){
         List<Product> allProducts = productRepository.findLastAddedProducts();
         model.addAttribute("allProducts", allProducts);
+        model.addAttribute("user", null);
         return "index";
     }
 
@@ -114,13 +108,13 @@ public class AppController {
     @GetMapping("/cart-all")
     public String viewAllInCart(HttpSession session, Model model){
         User user = (User) session.getAttribute("user");
+        if(user == null){
+            return "redirect:/register";
+        }
         Cart cart = cartRepository.findById(user.getId()).orElse(null);
         user.setCart(cart);
         model.addAttribute("user", user);
         model.addAttribute("cart", cart);
-        if(user == null){
-            return "redirect:/register";
-        }
         List<CartItem> cartItems = user.getCart().getCartItems();
         model.addAttribute("cartItems", cartItems);
         return "cartAll";
@@ -140,5 +134,7 @@ public class AppController {
         model.addAttribute("product", product);
         return "productSingle";
     }
+
+
 
 }
