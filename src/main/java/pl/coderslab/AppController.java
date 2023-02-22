@@ -3,20 +3,20 @@ package pl.coderslab;
 import org.dom4j.rule.Mode;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.cart.Cart;
 import pl.coderslab.cart.CartRepository;
-import pl.coderslab.cart.CartService;
 import pl.coderslab.cart_item.*;
 import pl.coderslab.product.Product;
-import pl.coderslab.product.ProductController;
 import pl.coderslab.product.ProductRepository;
 import pl.coderslab.product.ProductService;
 import pl.coderslab.user.User;
 import pl.coderslab.user.UserRepository;
-import pl.coderslab.user.UserService;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+import javax.validation.Validator;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -31,14 +31,16 @@ public class AppController {
     private final UserRepository userRepository;
     private final ProductRepository productRepository;
     private final CartRepository cartRepository;
+    private final Validator validator;
 
 
-    public AppController(ProductRepository productRepository, CartItemRepository cartItemRepository, UserRepository userRepository, ProductService productService,CartRepository cartRepository) {
+    public AppController(ProductRepository productRepository, CartItemRepository cartItemRepository, UserRepository userRepository, ProductService productService, CartRepository cartRepository, Validator validator) {
         this.productRepository = productRepository;
         this.cartItemRepository = cartItemRepository;
         this.userRepository = userRepository;
         this.productService = productService;
         this.cartRepository = cartRepository;
+        this.validator = validator;
     }
 
     @GetMapping("")
@@ -55,7 +57,10 @@ public class AppController {
         return "register";
     }
     @PostMapping("/register")
-    public String addNewUser(User user, Model model, HttpSession session){
+    public String addNewUser(@Valid User user, BindingResult bindingResult, Model model, HttpSession session){
+        if (bindingResult.hasErrors()) {
+            return "register";
+        }
         Cart cart = cartRepository.save(new Cart());
         cart.setUser((User)session.getAttribute("user"));
         cartRepository.save(cart);
@@ -64,20 +69,29 @@ public class AppController {
         return "redirect:/login";
     }
     @PostMapping("/login")
-    public String loginUser(@RequestParam String email,
-                            @RequestParam String password, HttpSession session){
-        User user = userRepository.findById(9L).orElse(null);
+    public String loginUser(@Valid User userToCompare ,BindingResult bindingResult, Model model, HttpSession session){
+        String email = userToCompare.getEmail();
+        User user = userRepository.findByEmail(email);
+        if (bindingResult.hasErrors()) {
+            return "login";
+        }
+//        User oldUser = userRepository.findById(9L).orElse(null);
         if(user == null){
             return "redirect:/register";
         }
         Cart cart = cartRepository.findCartByUserId(user.getId());
-        session.setAttribute("user", user);
-        session.setAttribute("cart", cart);
-        return "redirect:/";
+        model.addAttribute("user", user);
+        model.addAttribute("cart", cart);
+        session.setAttribute("user",user);
+        session.setAttribute("cart",cart);
+
+        return "redirect:/all";
     }
 
     @GetMapping("/login")
-    public String loginForm(){
+    public String loginForm(Model model){
+        User user = new User();
+        model.addAttribute("user", user);
         return "login";
     }
 

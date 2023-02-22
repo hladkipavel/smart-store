@@ -10111,3 +10111,6 @@ textarea.form-control {
 .none {
   display: none;
 }
+.error {
+  color: #c72d2d;
+}

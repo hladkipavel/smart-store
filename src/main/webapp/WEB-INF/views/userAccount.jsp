@@ -26,14 +26,14 @@
             <tr class="d-flex">
                 <th scope="row" class="col-2"><h4>Last name</h4></th>
                 <td class="col-7">
-                    <form:label path="lastName">First name</form:label>
+                    <form:label path="lastName">Last name</form:label>
                     <form:input class="w-100 p-1" value="${user.lastName}" path="lastName"/>
                 </td>
             </tr>
             <tr class="d-flex">
                 <th scope="row" class="col-2"><h4>Email</h4></th>
                 <td class="col-3">
-                    <form:label path="email">First name</form:label>
+                    <form:label path="email">Email</form:label>
                     <form:input class="w-100 p-1" value="${user.email}" path="email"/>
                 </td>
             </tr>

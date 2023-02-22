@@ -13,7 +13,7 @@
     <div class="container">
         <a class="navbar-brand" href="/">Smart <span>store</span></a>
         <div class="order-lg-last btn-group">
-            <c:if test="${not empty user}">
+            <c:if test="${not empty user.id}">
             <a href="#" class="btn-cart dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="flaticon-shopping-bag"></span>
                 <div class="d-flex justify-content-center align-items-center"><small>${cart.getCartItems().size()}</small></div>
