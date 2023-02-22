@@ -25,8 +25,6 @@ public class User {
     private String lastName;
     private String email;
     private String password;
-    @OneToOne
-    private Cart cart;
     @OneToMany(mappedBy = "user")
     List<Order> orders = new ArrayList<>();
 
@@ -35,6 +33,5 @@ public class User {
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.cart = new Cart();
     }
 }

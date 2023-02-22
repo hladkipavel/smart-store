@@ -19,7 +19,7 @@
                 <div class="d-flex justify-content-center align-items-center"><small>${cart.getCartItems().size()}</small></div>
             </a>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <c:forEach items="${cart.getCartItems()}" var="item" begin="0" end="4">
+                    <c:forEach items="${cart.getCartItems()}" var="item" begin="0" end="2">
                         <div class="dropdown-item d-flex align-items-start" href="#">
                             <div class="img" style="background-image: url(/images/prod-${item.product.id}.jpg);"></div>
                             <div class="text pl-3">
@@ -67,7 +67,7 @@
             <div class="col-md-8 ftco-animate d-flex align-items-end">
                 <div class="text w-100 text-center">
                     <h1 class="mb-4">Welcome to the <span>Smart store</span></h1>
-                    <p><a href="/all" class="btn btn-white btn-outline-white py-2 px-4">Shop Now</a> <a href="/about" class="btn btn-white btn-outline-white py-2 px-4">Read more</a></p>
+                    <p><a href="/all" class="btn btn-white btn-outline-white py-2 px-4">Shop Now</a> </p>
                 </div>
             </div>
         </div>
@@ -190,7 +190,7 @@
                     <div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/prod-${product.id}.jpg);">
                         <div class="desc">
                             <p class="meta-prod d-flex">
-                                <a href="/cart/${product.id}" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
+                                <a class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
 <%--                                <a href="#" class="d-flex align-items-center justify-content-center"><span class="flaticon-heart"></span></a>--%>
                                 <a href="/${product.id}" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>
                             </p>

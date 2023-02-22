@@ -11,7 +11,6 @@ window.addEventListener('click', function(event){
     const totalPrice = alertTotal.querySelector('.total-price');
     const id = alertTotal.querySelector('.id');
     totalPrice.innerText = "$" + ((parseFloat((counter.innerText).replace('$', ''))) * (parseFloat((priceOfProduct.innerText).replace('$', '')))).toString();
-
     addInformation(id, counter);
   
 }
@@ -27,12 +26,20 @@ if(event.target.dataset.action === 'minus'){
     const id = alertTotal.querySelector('.id');
     totalPrice.innerText = "$" + ((parseFloat((counter.innerText).replace('$', ''))) * (parseFloat((priceOfProduct.innerText).replace('$', '')))).toString();
 
-    addInformation(id, counter);
-    
+    addInformation(id, counter, totalPrice);   
+}
+if(event.target.dataset.action === 'delete'){
+  const alertTotal = event.target.closest('.alert');
+  const id = alertTotal.querySelector('.id');
+  deleteRow(id);
 }
 });
 });
 
 function addInformation(id, counter){
   fetch('/after-change/' + id.value + '/' + counter.innerText).then(function(){console.log("error")});
+}
+
+function deleteRow(id){
+  fetch('/delete/' + id.value).then(function(){console.log("error")});
 }

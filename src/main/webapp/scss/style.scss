@@ -213,7 +213,7 @@ h1, h2, h3, h4, h5,
 				padding: 20px;
 				border-bottom: 1px solid rgba(0,0,0,.05);
 				white-space: normal;
-				&:last-child(){
+				&:last-child(0){
 					border: none;
 				}
 				.img{
@@ -1189,12 +1189,12 @@ h1, h2, h3, h4, h5,
 			.email{
 				span{
 					display: block;
-					&:first-child(){
+					&:first-child(0){
 						font-weight: 500;
 						font-size: 20px;
 						color: $black;
 					}
-					&:last-child(){
+					&:last-child(0){
 						color: rgba(0,0,0,.3);
 					}
 				}
@@ -1838,11 +1838,11 @@ textarea.form-control {
 
 // magnific pop up
 
-.image-popup {
-	cursor: -webkit-zoom-in;
-	cursor: -moz-zoom-in;
-	cursor: zoom-in;
-}
+//.image-popup {
+//	cursor: -webkit-zoom-in;
+//	cursor: -moz-zoom-in;
+//	cursor: zoom-in;
+//}
 .mfp-with-zoom .mfp-container,
 .mfp-with-zoom.mfp-bg {
   opacity: 0;

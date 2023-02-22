@@ -54,10 +54,10 @@ public class AppController {
         return "register";
     }
     @PostMapping("/register")
-    public String addNewUser(User user, Model model){
+    public String addNewUser(User user, Model model, HttpSession session){
         Cart cart = cartRepository.save(new Cart());
-        user.setCart(cart);
-        userRepository.save(user);
+        cart.setUser((User)session.getAttribute("user"));
+        cartRepository.save(cart);
         model.addAttribute("user", user);
         model.addAttribute("cart", cart);
         return "redirect:/login";
@@ -69,7 +69,7 @@ public class AppController {
         if(user == null){
             return "redirect:/register";
         }
-        Cart cart = user.getCart();
+        Cart cart = cartRepository.findCartByUserId(user.getId());
         session.setAttribute("user", user);
         session.setAttribute("cart", cart);
         return "redirect:/";
@@ -98,7 +98,6 @@ public class AppController {
         cartItemRepository.save(cartItem);
         cart = cartRepository.findById(user.getId()).orElse(null);
         model.addAttribute("cart", cart);
-        user.setCart(cart);
         model.addAttribute("user", user);
         List<CartItem> listInCart = cart.getCartItems();
         model.addAttribute("listInCart", listInCart);
@@ -112,11 +111,14 @@ public class AppController {
             return "redirect:/register";
         }
         Cart cart = cartRepository.findById(user.getId()).orElse(null);
-        user.setCart(cart);
         model.addAttribute("user", user);
         model.addAttribute("cart", cart);
-        List<CartItem> cartItems = user.getCart().getCartItems();
+        List<CartItem> cartItems = cart.getCartItems();
         model.addAttribute("cartItems", cartItems);
+        Integer totalCount = cart.getCountItems();
+        model.addAttribute("totalCount", totalCount);
+        Double totalPrice = cartItemRepository.totalPriceCartItemsByUserId(cart.getId());
+        model.addAttribute("totalPrice", totalPrice);
         return "cartAll";
     }
     @GetMapping("/after-change/{id}/{counter}")
@@ -133,6 +135,13 @@ public class AppController {
         Product product = productService.getProduct(id);
         model.addAttribute("product", product);
         return "productSingle";
+    }
+    @GetMapping("/delete/{id}")
+    public String deleteProductById(@PathVariable Long id, HttpSession session, Model model){
+        cartItemRepository.deleteById(id);
+        Cart cart = (Cart) session.getAttribute("cart");
+        model.addAttribute("cart", cart);
+        return "/cartAll";
     }
 
 

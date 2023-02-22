@@ -23,6 +23,10 @@ public class Cart {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
+    private Integer countItems;
+    @OneToOne
+    private User user;
     @OneToMany(mappedBy = "cart", fetch = FetchType.EAGER)
     private List<CartItem> cartItems = new ArrayList<>();
+
 }

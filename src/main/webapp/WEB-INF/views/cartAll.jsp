@@ -19,7 +19,7 @@
           <div class="d-flex justify-content-center align-items-center"><small>${cart.getCartItems().size()}</small></div>
         </a>
         <div class="dropdown-menu dropdown-menu-right">
-          <c:forEach items="${cart.getCartItems()}" var="item" begin="0" end="4">
+          <c:forEach items="${cart.getCartItems()}" var="item" begin="0" end="2">
             <div class="dropdown-item d-flex align-items-start" href="#">
               <div class="img" style="background-image: url(/images/prod-${item.product.id}.jpg);"></div>
               <div class="text pl-3">
@@ -59,12 +59,12 @@
   </div>
 </nav>
 
-<section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_2.jpg');" data-stellar-background-ratio="0.5">
+<section class="hero-wrap hero-wrap-2" style="background-image: url('/images/bg_2.jpg');" data-stellar-background-ratio="0.5">
   <div class="overlay"></div>
   <div class="container">
     <div class="row no-gutters slider-text align-items-end justify-content-center">
       <div class="col-md-9 ftco-animate mb-5 text-center">
-        <p class="breadcrumbs mb-0"><span class="mr-2"><a href="index.html">Home <i class="fa fa-chevron-right"></i></a></span> <span>Cart <i class="fa fa-chevron-right"></i></span></p>
+        <p class="breadcrumbs mb-0"><span class="mr-2"><a href="/cart-all">Home <i class="fa fa-chevron-right"></i></a></span> <span>Cart <i class="fa fa-chevron-right"></i></span></p>
         <h2 class="mb-0 bread">My Cart</h2>
       </div>
     </div>
@@ -121,7 +121,8 @@
             <td class="total-price" name="total-price">$<c:out value="${item.product.price * item.count}"/></td>
             <td>
               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true"><i class="fa fa-close"></i></span>
+<%--                <a href="/delete/${item.id}"></a>--%>
+                <span aria-hidden="true"><i class="fa fa-close" data-action = "delete"></i></span>
               </button>
             </td>
           </tr>
@@ -138,20 +139,20 @@
           <h3>Cart Totals</h3>
           <p class="d-flex">
             <span>Subtotal</span>
-            <span>$20.60</span>
+            <span>$${totalPrice}</span>
           </p>
           <p class="d-flex">
-            <span>Delivery</span>
+            <span>Count products</span>
+            <span>${totalCount}</span>
+          </p>
+          <p class="d-flex">
+            <span>Sale</span>
             <span>$0.00</span>
-          </p>
-          <p class="d-flex">
-            <span>Discount</span>
-            <span>$3.00</span>
           </p>
           <hr>
           <p class="d-flex total-price">
             <span>Total</span>
-            <span>$17.60</span>
+            <span>$${totalPrice}</span>
           </p>
         </div>
         <p class="text-center"><a href="checkout.html" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
