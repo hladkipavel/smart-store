@@ -52,7 +52,7 @@
                         <a class="dropdown-item" href="checkout.html">Checkout</a>
                     </div>
                 </li>
-                <li class="nav-item"><a href="" class="nav-link">My Account</a></li>
+                <li class="nav-item"><a href="/account" class="nav-link">My Account</a></li>
                 <li class="nav-item"><a href="#part1" class="nav-link">Contact</a></li>
             </ul>
         </div>

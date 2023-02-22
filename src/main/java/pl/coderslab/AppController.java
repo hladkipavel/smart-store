@@ -1,5 +1,6 @@
 package pl.coderslab;
 
+import org.dom4j.rule.Mode;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -143,7 +144,16 @@ public class AppController {
         model.addAttribute("cart", cart);
         return "/cartAll";
     }
-
-
-
+    @GetMapping("/account")
+    public String showUserAccount(Model model, HttpSession session){
+        User user = (User)session.getAttribute("user");
+        model.addAttribute("user", user);
+        return "userAccount";
+    }
+    @PostMapping("/account")
+    public String editUserData(User user, HttpSession session){
+        userRepository.save(user);
+        session.setAttribute("user", user);
+        return "redirect:/";
+    }
 }
