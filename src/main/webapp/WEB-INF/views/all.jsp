@@ -19,7 +19,7 @@
                     <div class="d-flex justify-content-center align-items-center"><small>${cart.cartItems.size()}</small></div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <c:forEach items="${cart.cartItems}" var="item" begin="0" end="3">
+                    <c:forEach items="${cart.cartItems}" var="item" begin="0" end="2">
                         <div class="dropdown-item d-flex align-items-start" href="#">
                             <div class="img" style="background-image: url(/images/prod-${item.product.id}.jpg);"></div>
                             <div class="text pl-3">
