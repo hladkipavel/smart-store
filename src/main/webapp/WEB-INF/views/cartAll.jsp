@@ -11,7 +11,7 @@
 <jsp:include page="header.jsp"/>
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">Smart <span>store</span></a>
+    <a class="navbar-brand" href="/homepage">Smart <span>store</span></a>
     <div class="order-lg-last btn-group">
       <c:if test="${not empty user}">
         <a href="#" class="btn-cart dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -52,7 +52,7 @@
             <a class="dropdown-item" href="checkout.html">Checkout</a>
           </div>
         </li>
-        <li class="nav-item"><a href="" class="nav-link">My Account</a></li>
+        <li class="nav-item"><a href="/account" class="nav-link">My Account</a></li>
         <li class="nav-item"><a href="#part1" class="nav-link">Contact</a></li>
       </ul>
     </div>

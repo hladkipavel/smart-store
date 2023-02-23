@@ -16,7 +16,7 @@
             <c:if test="${not empty user}">
                 <a href="#" class="btn-cart dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="flaticon-shopping-bag"></span>
-                    <div class="d-flex justify-content-center align-items-center"><small>${cart.countItems}</small></div>
+                    <div class="d-flex justify-content-center align-items-center"><small>${cart.cartItems.size()}</small></div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <c:forEach items="${cart.getCartItems()}" var="item" begin="0" end="3">
@@ -52,7 +52,10 @@
                         <a class="dropdown-item" href="checkout.html">Checkout</a>
                     </div>
                 </li>
-                <li class="nav-item"><a href="" class="nav-link">My Account]</a></li>
+<c:if test="${not empty user}">
+                <li class="nav-item"><a href="/account" class="nav-link">My Account</a></li>
+</c:if>
+                <li class="nav-item"><a href="/login" class="nav-link">My Account</a></li>
                 <li class="nav-item"><a href="#part1" class="nav-link">Contact</a></li>
             </ul>
         </div>

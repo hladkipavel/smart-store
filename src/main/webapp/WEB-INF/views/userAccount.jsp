@@ -21,6 +21,7 @@
                 <td class="col-7">
                     <form:label path="firstName">First name</form:label>
                     <form:input class="w-100 p-1" value="${user.firstName}" path="firstName"/>
+                        <form:errors path="firstName" cssClass="error"/></br>
                 </td>
             </tr>
             <tr class="d-flex">
@@ -28,6 +29,7 @@
                 <td class="col-7">
                     <form:label path="lastName">Last name</form:label>
                     <form:input class="w-100 p-1" value="${user.lastName}" path="lastName"/>
+                        <form:errors path="lastName" cssClass="error"/></br>
                 </td>
             </tr>
             <tr class="d-flex">
@@ -35,6 +37,7 @@
                 <td class="col-3">
                     <form:label path="email">Email</form:label>
                     <form:input class="w-100 p-1" value="${user.email}" path="email"/>
+                        <form:errors path="email" cssClass="error"/></br>
                 </td>
             </tr>
             <tr class="d-flex">
@@ -42,6 +45,7 @@
                 <td class="col-3">
                     <form:label path="password">Password</form:label>
                     <form:input class="w-100 p-1" type="password" path="password"/>
+                        <form:errors path="password" cssClass="error"/></br>
                 </td>
             </tr>
             </tbody>

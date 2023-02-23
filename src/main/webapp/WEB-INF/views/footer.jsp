@@ -24,7 +24,10 @@
                 <div class="ftco-footer-widget mb-4 ml-md-4">
                     <h2 class="ftco-heading-2">My Accounts</h2>
                     <ul class="list-unstyled">
-                        <li><a href="/all"><span class="fa fa-chevron-right mr-2"></span>My Account</a></li>
+<c:if test="${not empty user}">
+                        <li><a href="/account"><span class="fa fa-chevron-right mr-2"></span>My Account</a></li>
+</c:if>
+                        <li><a href="/login"><span class="fa fa-chevron-right mr-2"></span>My Account</a></li>
                         <li><a href="/register"><span class="fa fa-chevron-right mr-2"></span>Register</a></li>
                         <li><a href="/login"><span class="fa fa-chevron-right mr-2"></span>Log In</a></li>
                         <li><a href="/cart-all"><span class="fa fa-chevron-right mr-2"></span>My Order</a></li>

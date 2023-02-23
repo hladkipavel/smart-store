@@ -75,7 +75,6 @@ public class AppController {
         if (bindingResult.hasErrors()) {
             return "login";
         }
-//        User oldUser = userRepository.findById(9L).orElse(null);
         if(user == null){
             return "redirect:/register";
         }
@@ -85,7 +84,7 @@ public class AppController {
         session.setAttribute("user",user);
         session.setAttribute("cart",cart);
 
-        return "redirect:/all";
+        return "redirect:/homepage";
     }
 
     @GetMapping("/login")
@@ -165,9 +164,19 @@ public class AppController {
         return "userAccount";
     }
     @PostMapping("/account")
-    public String editUserData(User user, HttpSession session){
+    public String editUserData(@Valid User user,BindingResult bindingResult, HttpSession session){
+        if(bindingResult.hasErrors()){
+            return "userAccount";
+        }
         userRepository.save(user);
         session.setAttribute("user", user);
         return "redirect:/";
+    }
+    @GetMapping("/homepage")
+    public String showHomepage(Model model, HttpSession session){
+        User user = (User)session.getAttribute("user");
+        model.addAttribute("user", user);
+        model.addAttribute("cart", cartRepository.findCartByUserId(user.getId()));
+        return "homepage";
     }
 }
