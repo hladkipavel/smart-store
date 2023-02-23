@@ -18,6 +18,7 @@
             <tbody>
             <tr class="d-flex">
                 <th scope="row" class="col-2"><h4>First name</h4></th>
+                <form:hidden path="id"></form:hidden>
                 <td class="col-7">
                     <form:label path="firstName">First name</form:label>
                     <form:input class="w-100 p-1" value="${user.firstName}" path="firstName"/>

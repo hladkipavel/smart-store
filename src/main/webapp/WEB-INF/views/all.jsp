@@ -19,7 +19,7 @@
                     <div class="d-flex justify-content-center align-items-center"><small>${cart.cartItems.size()}</small></div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <c:forEach items="${cart.getCartItems()}" var="item" begin="0" end="3">
+                    <c:forEach items="${cart.cartItems}" var="item" begin="0" end="3">
                         <div class="dropdown-item d-flex align-items-start" href="#">
                             <div class="img" style="background-image: url(/images/prod-${item.product.id}.jpg);"></div>
                             <div class="text pl-3">
@@ -52,10 +52,12 @@
                         <a class="dropdown-item" href="checkout.html">Checkout</a>
                     </div>
                 </li>
-<c:if test="${not empty user}">
+<%--<c:if test="${not empty user}">--%>
                 <li class="nav-item"><a href="/account" class="nav-link">My Account</a></li>
-</c:if>
-                <li class="nav-item"><a href="/login" class="nav-link">My Account</a></li>
+<%--</c:if>--%>
+<%--<c:if test="${empty user}">--%>
+<%--                <li class="nav-item"><a href="/login" class="nav-link">My Account</a></li>--%>
+<%--</c:if>--%>
                 <li class="nav-item"><a href="#part1" class="nav-link">Contact</a></li>
             </ul>
         </div>
@@ -92,7 +94,7 @@
                                 <div class="desc">
                                     <p class="meta-prod d-flex">
                                        <a href="/cart/${product.id}" class="d-flex align-items-center justify-content-center"><span class="flaticon-shopping-bag"></span></a>
-                                        <a href="/${product.id}" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>
+                                        <a href="/view-single/${product.id}" class="d-flex align-items-center justify-content-center"><span class="flaticon-visibility"></span></a>
                                     </p>
                                 </div>
                             </div>

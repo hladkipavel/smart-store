@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Primary
 @RequiredArgsConstructor
@@ -27,5 +29,9 @@ public class JpaCategoryService implements CategoryService{
     @Override
     public Category getCategory(Long id) {
         return categoryRepository.getOne(id);
+    }
+
+    public List<Category> showAllCategory(){
+        return categoryRepository.findAll();
     }
 }

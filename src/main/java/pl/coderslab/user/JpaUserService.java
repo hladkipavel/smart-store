@@ -29,4 +29,8 @@ public class JpaUserService implements UserService{
     public void editUser(User user) {
         userRepository.save(user);
     }
+
+    public User getUserByEmail(String email){
+        return userRepository.findByEmail(email);
+    }
 }

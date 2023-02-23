@@ -34,4 +34,13 @@ public class JpaProductService implements ProductService{
     public void editProduct(Product product) {
         productRepository.save(product);
     }
+
+    public List<Product> getLastAddedProducts(){
+        return productRepository.findLastAddedProducts();
+    }
+
+    public List<Product> getProductByCategory(Long id){
+       return productRepository.findByCategoryId(id);
+    }
+
 }

@@ -3,6 +3,7 @@ package pl.coderslab.cart;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
+import pl.coderslab.user.UserRepository;
 
 @Service
 @Primary
@@ -29,4 +30,9 @@ public class JpaCartService implements CartService{
     public void editCart(Cart cart) {
         cartRepository.save(cart);
     }
+
+    public Cart getCartByUserId(Long id){
+        return cartRepository.findCartByUserId(id);
+    }
+
 }
