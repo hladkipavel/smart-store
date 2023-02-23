@@ -92,8 +92,8 @@
           <tr class="alert" role="alert">
             <td>
               <label class="checkbox-wrap checkbox-primary">
-                <input type="checkbox" checked>
-                <span class="checkmark"></span>
+<%--                <input type="checkbox" checked>--%>
+<%--                <span class="checkmark"></span>--%>
               </label>
             </td>
             <td>
@@ -131,8 +131,6 @@
         </table>
       </div>
     </div>
-    <button type="button" class="change" data-dismiss="alert" aria-label="change">
-    </button>
     <div class="row justify-content-end">
       <div class="col col-lg-5 col-md-6 mt-5 cart-wrap ftco-animate">
         <div class="cart-total mb-3">
